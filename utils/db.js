@@ -8,10 +8,14 @@ exports.getSignatures = function getSignatures() {
 //$1 syntax is used to prevent a type of attack called SQl injection!
 exports.addSignature = function addSignature(first, last, signature) {
     return db.query(
-        "INSERT INTO signatures(first, last, signature) VALUES($1, $2, $3)",
+        "INSERT INTO signatures(first, last, signature) VALUES($1, $2, $3) RETURNING id",
         [first, last, signature]
     );
 };
 exports.getNumber = function getNumber() {
     return db.query("SELECT COUNT(*) FROM signatures");
+};
+
+exports.getSignature = function getSignature(id) {
+    return db.query("SELECT signature FROM signatures WHERE id =" + id);
 };

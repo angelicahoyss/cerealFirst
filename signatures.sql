@@ -7,3 +7,4 @@ CREATE TABLE signatures(
     signature TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+--ALTER command is good for changing cols 

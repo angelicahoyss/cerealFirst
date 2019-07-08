@@ -41,3 +41,23 @@ Server Routes
     -   renders "thank you" template
 -   GET / signers
     -   renders the signers template. will need the first and last names of everyone whose signed petition
+
+PART TWO
+
+/petition/signed route can know which signature was just made by this user
+cookie header will send the cookie (key value pair)
+cookies are tiny - they can only store about 400 bytes. (4kb)
+take the url of the signature and store it in a cookie - easiest way but the link is really big so we can't use it.
+We can take the id as a reference to the signature of the table in a cookie
+npm package cookie-session will allow us to put stuff into a cookie
+cookie session will automatically make 2 cookies
+
+first cookie is base64 encoded:
+atob('')
+JSON.parse(atob(''))
+second is encrypted version of a first cookie:
+only cookie session will know how to get information from this
+if the server receives a request where both cookies are the same, then request will be processed.
+properties in a cookie: csrfSecret, userId, First, Last, SigId.
+
+mysalt is a string added to the cookie for security (comes from a cookie session)
