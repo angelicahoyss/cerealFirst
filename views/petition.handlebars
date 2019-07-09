@@ -2,11 +2,11 @@
         <p>Lorem ipsum dolor izzle amizzle, ma nizzle adipiscing shut the shizzle up.
         Nullam gangster velizzle, we gonna chung pot, suscipit yo, gizzle vizzle, arcu.</p>
         <h3>enter your name</h3>
-        <form method="POST">
+        <form method="POST" action="/petition">
             <input type="text" name ="first" placeholder="first name" required></input>
             <input type="text" name = "last" placeholder="last name" required></input>
-            <input type="hidden" name="signature"></input>
+            <input type="hidden" name="signature" name="_csrf" value="{{csrfToken}}"></input>
             <canvas id="canvas" width="300" height="100" required></canvas>
-            <button id ="submit-btn" type="submit">SUBMIT</button>
+            <button id ="sign-btn" type="submit">SIGN</button>
         </form>
 </div>

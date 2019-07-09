@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 
 const db = require("./utils/db");
+var bcrypt = require("./utils/bc");
 const bodyParser = require("body-parser");
+// const csurf = require("csurf");
 
 const hb = require("express-handlebars");
 app.engine("handlebars", hb());
@@ -17,16 +19,72 @@ app.use(
     })
 );
 
-app.use(express.static("./public"));
-
 app.use(
     require("body-parser").urlencoded({
         extended: false
     })
 );
 
+// app.use(csurf());
+// //X-Frame-Options header to disallow framing of the page by unauthorized parties.
+// app.use(function(req, res, next) {
+//     res.set("x-frame-options", "deny");
+//     res.locals.csrfToken = req.csrfToken();
+//     next();
+// });
+
+app.use(express.static("./public"));
+
 app.get("/", (req, res) => {
-    res.redirect("/petition");
+    res.redirect("/register");
+});
+
+app.get("/register", (req, res) => {
+    res.render("register", {});
+});
+
+app.post("/register", (req, res) => {
+    bcrypt.hashPassword(req.body.password).then(hash => {
+        // console.log(hash);
+        return db
+            .addUserInfo(req.body.first, req.body.last, req.body.email, hash)
+            .then(results => {
+                req.session.userId = results.rows[0].id;
+                // console.log("req.body:", req.body);
+                // console.log("results", results);
+                res.redirect("/petition");
+            })
+            .catch(err => {
+                console.log("err in addUserInfo: ", err);
+            });
+    });
+});
+
+app.get("/login", (req, res) => {
+    res.render("login", {});
+});
+
+app.post("/login", (req, res) => {
+    // console.log(req.body.email);
+    db.getPassword(req.body.email)
+        .then(hash => {
+            // console.log("Hash:", hash);
+            return bcrypt
+                .checkPassword(req.body.password, hash.rows[0].password)
+                .then(results => {
+                    // console.log("results", results);
+                    if (result) {
+                        res.redirect("/petition");
+                    } else {
+                        res.render("/login", {
+                            invalid: true
+                        });
+                    }
+                });
+        })
+        .catch(err => {
+            console.log("err in doesMatch: ", err);
+        });
 });
 
 app.get("/petition", (req, res) => {
@@ -92,3 +150,5 @@ app.get("/petition/signers", (req, res) => {
 });
 
 app.listen(8080, () => console.log("jules!"));
+
+//create user table, hash pass when they register, match when they logout

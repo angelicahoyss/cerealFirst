@@ -19,3 +19,14 @@ exports.getNumber = function getNumber() {
 exports.getSignature = function getSignature(id) {
     return db.query("SELECT signature FROM signatures WHERE id =" + id);
 };
+
+exports.addUserInfo = function addUserInfo(first, last, email, password) {
+    return db.query(
+        "INSERT INTO users(first, last, email, password) VALUES($1, $2, $3, $4) RETURNING id",
+        [first, last, email, password]
+    );
+};
+
+exports.getPassword = function getPassword(email) {
+    return db.query("SELECT email, password from users WHERE email=" + email);
+};

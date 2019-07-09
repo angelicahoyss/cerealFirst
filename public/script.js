@@ -1,5 +1,5 @@
 const canvas = document.getElementById("canvas");
-const button = document.getElementById("submit-btn");
+const button = document.getElementById("sign-btn");
 const ctx = canvas.getContext("2d");
 
 let position = { x: 0, y: 0 };
