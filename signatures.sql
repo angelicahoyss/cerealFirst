@@ -3,12 +3,10 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE signatures(
     id SERIAL PRIMARY KEY,
-    first VARCHAR(200) NOT NULL,
-    last VARCHAR(200) NOT NULL,
     signature TEXT,
+    user_id INT NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
---ALTER command is good for changing cols
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,

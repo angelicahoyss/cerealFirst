@@ -1,6 +1,11 @@
 let spicedPg = require("spiced-pg");
+let db;
 
-let db = spicedPg("postgres:postgres:postgres@localhost:5432/signatures");
+if (process.env.DATABASE_URL) {
+    db = spicedPg(process.env.DATABASE_URL);
+} else {
+    db = spicedPg("postgres:postgres:postgres@localhost:5432/signatures");
+}
 
 exports.getSignatures = function getSignatures() {
     return db.query("SELECT * FROM signatures");
@@ -8,8 +13,8 @@ exports.getSignatures = function getSignatures() {
 //$1 syntax is used to prevent a type of attack called SQl injection!
 exports.addSignature = function addSignature(first, last, signature) {
     return db.query(
-        "INSERT INTO signatures(first, last, signature) VALUES($1, $2, $3) RETURNING id",
-        [first, last, signature]
+        "INSERT INTO signatures(signature) VALUES($3) RETURNING id",
+        [signature]
     );
 };
 exports.getNumber = function getNumber() {

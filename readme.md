@@ -95,4 +95,68 @@ only logged in users should have permissions to view certain pages. not logged i
 
 if the user hasn't signed the petition yet, the user should not be able to see the thank-you page.
 
-//things to add - clear canvas, signature mandatory//
+//things to add - clear canvas, signature mandatory, if statements handlebars for the login//
+
+PART FOUR
+
+Joins //join two tables
+SELECT \* FROM signers /signatures/
+(FULL OUTER) JOIN songs /users/ --- full outer is to join even cols that don't match
+ON singers.id = songs.singer_id //signatures.id = users.user_id (newID)//
+
+--- SELECT singers.name AS signer_name, songs.name AS song
+FROM singers
+JOIN songs
+ON signers.id = songs.singer_id;
+
+---
+
+we can also join multiple tables together
+SELECT singers.id, singers.name AS singer, songs.name AS song, albums.name AS album
+FROM signers
+LEFT JOIN songs
+ON singers.id = songs.singer_id
+JOIN albums
+ON singers.id = albums.singer_id;
+
+--if we only want certain data
+WHERE singers.id = 2;
+
+STEPS
+
+1. kill first and last name from signatures table. they should live in users table. replace with user_id
+2. new table for the user table
+   DROP TABLE IF EXISTS user_profiles CASCADE;
+   CREATE TABLE user_profiles (
+   id SERIAL PRIMARY KEY,
+   age INT,
+   city VARCHAR(100),
+   url VARCHAR(300),
+   user_id INT REFERENCES users(id)
+   )
+   -- referential integrity
+
+3. Need a new GET route and POST route for the extra information page. Everything should be optional.
+
+var str = 'hello';
+str.startsWith('hell'); --- true
+**\***does the users url starts with http or https - execute
+**\***if it doesn't - add at the beginning of a string
+
+4. Work on the signers pages
+   problem is data now lives in 3 tables
+   solution -->JOINS!
+   (tip: start with signatures table).
+   {{#signers}}
+   {{#if url}}
+   <a href={{url}}>{{first}}{{last}}</a>
+   {{else}}
+   {{first}}{{last}}
+   {{/if}}
+   {{/signers}}
+5. New get route for cities: petition/signers/cities (think params)
+   cities to lowercase in SQL. query that converts a string in lowercase
+   this goes in SQL query
+   WHERE city - $1
+--becomes
+WHERE LOWER(city) = LOWER($1)
