@@ -149,6 +149,6 @@ app.get("/petition/signers", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 8080 () => console.log("petition listening"));
+app.listen(process.env.PORT || 8080, () => console.log("petition listening"));
 
 //create user table, hash pass when they register, match when they logout
