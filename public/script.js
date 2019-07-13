@@ -24,6 +24,10 @@ function draw(e) {
     });
 }
 
+// function clearCanvas() {
+//     $('input[name="signature"]').val("");
+// }
+
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mousedown", setPosition);
 canvas.addEventListener("mouseup", setPosition);

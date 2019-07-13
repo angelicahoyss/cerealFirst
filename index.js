@@ -329,9 +329,7 @@ app.post("/product", (req, res) => {
 
 // ------ end demo routes
 if (require.main == module) {
-    app.listen(process.env.PORT || 8080, () =>
-        console.log("jules baby jules babybaby <3<3!")
-    );
+    app.listen(process.env.PORT || 8080, () => console.log("listening"));
 }
 
 //create user table, hash pass when they register, match when they logout
