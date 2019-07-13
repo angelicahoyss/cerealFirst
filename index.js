@@ -149,7 +149,6 @@ app.post("/login", (req, res) => {
 app.get("/petition", (req, res) => {
     //requireNoSignature
     if (req.session.sign_id) {
-        //something weird here
         res.redirect("/petition/signed");
     } else {
         res.render("petition", {});
@@ -251,7 +250,15 @@ app.get("/profile/edit", (req, res) => {
 });
 
 app.post("/profile/edit", (req, res) => {
+    let url;
+    if (!req.body.homepage.startsWith("http")) {
+        url = "http://" + req.body.homepage;
+    } else {
+        url = req.body.homepage;
+        console.log("homepage:", url);
+    }
     let changes;
+    console.log("req.body:", req.body);
     if (req.body.password != "") {
         changes = [
             bcrypt
@@ -268,7 +275,7 @@ app.post("/profile/edit", (req, res) => {
             db.updateProfileInfo(
                 req.body.age,
                 req.body.city,
-                req.body.url,
+                url,
                 req.session.user_id
             )
         ];
@@ -283,7 +290,7 @@ app.post("/profile/edit", (req, res) => {
             db.updateProfileInfo(
                 req.body.age,
                 req.body.city,
-                req.body.url,
+                url,
                 req.session.user_id
             )
         ];
@@ -308,6 +315,12 @@ app.post("/sigdelete", (req, res) => {
             console.log("sigdelete:", err);
         });
 });
+
+app.get("/petition/logout", function(req, res) {
+    req.session = null;
+    res.redirect("/login");
+});
+
 // ------ demo routes
 app.get("/home", (req, res) => {
     res.send("<h1>welcome to my website!<h1>");
