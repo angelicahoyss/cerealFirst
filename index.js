@@ -9,6 +9,7 @@ const csurf = require("csurf");
 const hb = require("express-handlebars");
 app.engine("handlebars", hb());
 app.set("view engine", "handlebars");
+app.use(express.static("./public"));
 
 var cookieSession = require("cookie-session");
 app.use(
@@ -27,12 +28,10 @@ app.use(
 app.use(csurf());
 //X-Frame-Options header to disallow framing of the page by unauthorized parties.
 app.use(function(req, res, next) {
-    res.set("x-frame-options", "deny");
+    res.setHeader("x-frame-options", "deny");
     res.locals.csrfToken = req.csrfToken();
     next();
 });
-
-app.use(express.static("./public"));
 
 // app.use((req, res, next) => {
 //     if (!req.session.user_id && req.url != "/register" && req.url != "/login") {
@@ -227,18 +226,88 @@ app.get("/petition/signers", (req, res) => {
 });
 
 app.get("/petition/signers/:city", (req, res) => {
-    console.log(req.params);
+    // console.log(req.params);
     db.getSignersByCity(req.params.city)
         .then(results => {
             res.render("signers", {
                 signers: results.rows
             });
         })
-        .catch(function(error) {
+        .catch(err => {
             console.log("err in getSignersByCity:", err);
         });
 });
 
+app.get("/profile/edit", (req, res) => {
+    db.editProfile(req.session.user_id)
+        .then(results => {
+            res.render("edit", {
+                profile: results.rows[0]
+            });
+        })
+        .catch(err => {
+            console.log("err in editProfile:", err);
+        });
+});
+
+app.post("/profile/edit", (req, res) => {
+    let changes;
+    if (req.body.password != "") {
+        changes = [
+            bcrypt
+                .hashPassword(req.body.password)
+                .then(hash =>
+                    db.updateUserInfo(
+                        req.session.user_id,
+                        req.body.first,
+                        req.body.last,
+                        req.body.email,
+                        hash
+                    )
+                ),
+            db.updateProfileInfo(
+                req.body.age,
+                req.body.city,
+                req.body.url,
+                req.session.user_id
+            )
+        ];
+    } else {
+        changes = [
+            db.updateUserInfo(
+                req.session.user_id,
+                req.body.first,
+                req.body.last,
+                req.body.email
+            ),
+            db.updateProfileInfo(
+                req.body.age,
+                req.body.city,
+                req.body.url,
+                req.session.user_id
+            )
+        ];
+    }
+
+    Promise.all(changes)
+        .then(() => {
+            res.redirect("/petition");
+        })
+        .catch(err => {
+            console.log("err in edit profile:", err);
+        });
+});
+
+app.post("/sigdelete", (req, res) => {
+    db.deleteSignature(req.session.user_id)
+        .then(() => {
+            delete req.session.sign_id;
+            res.redirect("/petition");
+        })
+        .catch(err => {
+            console.log("sigdelete:", err);
+        });
+});
 // ------ demo routes
 app.get("/home", (req, res) => {
     res.send("<h1>welcome to my website!<h1>");
@@ -260,7 +329,9 @@ app.post("/product", (req, res) => {
 
 // ------ end demo routes
 if (require.main == module) {
-    app.listen(process.env.PORT || 8080, () => console.log("jules!"));
+    app.listen(process.env.PORT || 8080, () =>
+        console.log("jules baby jules babybaby <3<3!")
+    );
 }
 
 //create user table, hash pass when they register, match when they logout
