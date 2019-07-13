@@ -1,13 +1,12 @@
 DROP TABLE IF EXISTS signatures;
-DROP TABLE IF EXISTS users;
-
 CREATE TABLE signatures(
     id SERIAL PRIMARY KEY,
     signature TEXT,
-    user_id INT NOT NULL UNIQUE,
+    user_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     first VARCHAR(200) NOT NULL,
@@ -15,4 +14,13 @@ CREATE TABLE users(
     email VARCHAR (200) UNIQUE,
     password VARCHAR (200) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS user_profiles CASCADE;
+CREATE TABLE user_profiles(
+    id SERIAL PRIMARY KEY,
+    age INT,
+    city VARCHAR(100),
+    url VARCHAR(300),
+    user_id INT NOT NULL UNIQUE
 );

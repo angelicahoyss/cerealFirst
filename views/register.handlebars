@@ -2,11 +2,12 @@
         <p>Lorem ipsum dolor izzle amizzle, ma nizzle adipiscing shut the shizzle up.
         Nullam gangster velizzle, we gonna chung pot, suscipit yo, gizzle vizzle, arcu.</p>
         <h3>register below</h3>
-        <form method="POST" action="/register">
+        <form method="post">
             <input type="text" name ="first" placeholder="first name" required></input>
             <input type="text" name = "last" placeholder="last name" required></input>
             <input type="text" name="email" placeholder="email address"required></input>
             <input type="password" name="password" placeholder="password" required></input>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}"></input>
             <button id ="signup-btn" type="submit">SIGN UP</button>
         </form>
         <p>If you are already a member please<a href="/login"> log in.</a></p>

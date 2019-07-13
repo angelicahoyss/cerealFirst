@@ -2,9 +2,13 @@
         <p>Lorem ipsum dolor izzle amizzle, ma nizzle adipiscing shut the shizzle up.
         Nullam gangster velizzle, we gonna chung pot, suscipit yo, gizzle vizzle, arcu.</p>
         <h3>enter your name</h3>
-        <form method="POST" action="/petition">
-            <input type="hidden" name="signature" name="_csrf" value="{{csrfToken}}"></input>
-            <canvas id="canvas" width="300" height="100" required></canvas>
+        <form method="post" action="/petition">
+            <input type="hidden" name="signature"></input>
+            <div class = "message {{#if message}} on {{/if}}">
+                <h4>you forgot to sign</h4>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}"></input>
+            <canvas id="canvas" width="300" height="100" ></canvas>
             <button id ="sign-btn" type="submit">SIGN</button>
         </form>
 </div>

@@ -19,11 +19,11 @@ function draw(e) {
     setPosition(e);
     ctx.lineTo(position.x, position.y);
     ctx.stroke();
+    document.body.addEventListener("mouseup", () => {
+        $('input[name="signature"]').val(canvas.toDataURL());
+    });
 }
 
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mousedown", setPosition);
 canvas.addEventListener("mouseup", setPosition);
-button.addEventListener("click", function() {
-    $('input[name="signature"]').val(canvas.toDataURL());
-});

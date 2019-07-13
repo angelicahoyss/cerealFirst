@@ -1,8 +1,16 @@
 <p>List of people</p>
-<div class="signatures">
-    {{#signatures}}
-        <p>
-            {{first}} {{last}}
-        </p>
-    {{/signatures}}
+<div class="signers">
+
+    {{#signers}}
+    <p>
+        	{{#if url}}
+        		<a href="{{url}}">{{first}}{{last}}</a>
+        	{{else}}
+        		{{first}} {{last}}
+        	{{/if}}
+        	{{age}}
+
+        	<a href="/petition/signers/{{city}}">{{city}}</a>
+    </p>
+        {{/signers}}
 </div>

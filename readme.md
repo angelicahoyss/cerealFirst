@@ -160,3 +160,18 @@ str.startsWith('hell'); --- true
    WHERE city - $1
 --becomes
 WHERE LOWER(city) = LOWER($1)
+
+///PART FIVE///
+
+edit userProfile
+req.body.password == "" - they didn't change password - no query
+
+userProfiles table query: update or insert? UPSERT
+delete query
+-to allow user to delete signature
+
+<form action="/sig/delete" method="POST">
+<input type= "hidden name="_csrf" value="{{csrfToken}}">
+<input type = "hidden name="user" value="{{userId}}">
+<button>delete<button>
+</form>
