@@ -5,10 +5,12 @@ const db = require("./utils/db");
 var bcrypt = require("./utils/bc");
 const bodyParser = require("body-parser");
 const csurf = require("csurf");
+const helmet = require("helmet");
 
 const hb = require("express-handlebars");
 app.engine("handlebars", hb());
 app.set("view engine", "handlebars");
+app.use(helmet());
 app.use(express.static("./public"));
 
 var cookieSession = require("cookie-session");
