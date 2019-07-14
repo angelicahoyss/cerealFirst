@@ -69,9 +69,7 @@ app.get("/register", (req, res) => {
     if (req.session.user_id) {
         res.redirect("/petition");
     } else {
-        res.render("register", {
-            title: "cereal first"
-        });
+        res.render("register", {});
     }
 });
 
@@ -116,9 +114,7 @@ app.post("/profile", (req, res) => {
 app.get("/login", (req, res) => {
     // requireLoggedOut;
     if (!req.session.user_id) {
-        res.render("login", {
-            title: "cereal first"
-        });
+        res.render("login", {});
     } else {
         res.redirect("/petition");
     }
@@ -126,23 +122,20 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
     db.getUser(req.body.email).then(results => {
-        console.log("/login:", results);
+        // console.log("/login:", results);
         if (!results.rows[0]) {
-            return res.render("login", {
-                title: "cereal first"
-            });
+            return res.render("login", {});
         }
         return bcrypt
             .checkPassword(req.body.password, results.rows[0].password)
             .then(match => {
-                if (match === true) {
-                    console.log("hash pass:", results.rows[0].password);
+                if (match == true) {
+                    console.log(results.rows[0].sign_id);
                     req.session.user_id = results.rows[0].user_id;
                     req.session.sign_id = results.rows[0].sign_id;
                 }
                 if (req.session.sign_id) {
-                    console.log(req.session.sign_id);
-                    res.redirect("/petition/signed");
+                    res.redirect("/petition/signers");
                 } else {
                     res.redirect("/petition");
                 }
@@ -202,7 +195,6 @@ app.get("/petition/signed", (req, res) => {
                 return db.getSignature(req.session.sign_id).then(results => {
                     console.log("signatureresults:", results);
                     res.render("signed", {
-                        title: "cereal first",
                         image: results.rows[0].signature,
                         num: number[0].count
                     });
@@ -223,7 +215,6 @@ app.get("/petition/signers", (req, res) => {
         .then(results => {
             // console.log("results from getSignatures: ", results.rows);
             res.render("signers", {
-                title: "cereal first",
                 signers: results.rows
             });
         })
@@ -238,7 +229,6 @@ app.get("/petition/signers/:city", (req, res) => {
     db.getSignersByCity(req.params.city)
         .then(results => {
             res.render("signers", {
-                title: "cereal first",
                 signers: results.rows
             });
         })
@@ -251,7 +241,6 @@ app.get("/profile/edit", (req, res) => {
     db.editProfile(req.session.user_id)
         .then(results => {
             res.render("edit", {
-                title: "cereal first",
                 profile: results.rows[0]
             });
         })
@@ -262,10 +251,10 @@ app.get("/profile/edit", (req, res) => {
 
 app.post("/profile/edit", (req, res) => {
     let url;
-    if (!req.body.url.startsWith("http")) {
-        url = "http://" + req.body.url;
+    if (!req.body.homepage.startsWith("http")) {
+        url = "http://" + req.body.homepage;
     } else {
-        url = req.body.url;
+        url = req.body.homepage;
         console.log("homepage:", url);
     }
     let changes;
@@ -355,3 +344,5 @@ app.post("/product", (req, res) => {
 if (require.main == module) {
     app.listen(process.env.PORT || 8080, () => console.log("listening"));
 }
+
+//create user table, hash pass when they register, match when they logout

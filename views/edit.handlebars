@@ -1,6 +1,10 @@
-<h1>edit your profile</h1>
+<nav class="navigation">
+    <a class="nav" href="/petition/logout">logout</a>
+</nav>
+<div class="edit">
+<h1 class="title">_edit<br>your<br>profile:</h1>
 <form method="post">
-<div>
+<div class="editprofile">
     {{#profile}}
     <input type="text" name="first" placeholder="first name" value={{first}}></input>
     <input type="text" name="last" placeholder="last name" value={{last}}></input>
@@ -8,9 +12,10 @@
     <input type="password" name="password" placeholder="password" value={{password}}></input>
     <input type="text" name="age" placeholder="age" value={{age}}></input>
     <input type="text" name="city" placeholder="city" value={{city}}></input>
-    <input type="url" name="homepage" placeholder="homepage" value={{homepage}}></input>
+    <input type="url" name="url" placeholder="homepage" value={{url}}></input>
     {{/profile}}
 </div>
     <input type="hidden" name="_csrf" value="{{csrfToken}}"></input>
     <button id ="edit-btn" type="sumbit">save</button>
 </form>
+</div>

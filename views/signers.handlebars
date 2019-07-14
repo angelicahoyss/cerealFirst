@@ -1,14 +1,18 @@
-<p>List of people</p>
+<nav class="navigation">
+    <a class="nav" href="/petition/logout">logout</a>
+    <a class="nav" href="/profile/edit">edit profile</a>
+</nav>
+<h1 class="title">_everyone<br>who<br>signed</h1>
 <div class="signers">
 
     {{#signers}}
     <p>
         	{{#if url}}
-        		<a href="{{url}}">{{first}}{{last}}</a>
+        		<a href="{{url}}">{{first}} {{last}} . </a>
         	{{else}}
-        		{{first}} {{last}}
+        		{{first}} {{last}} .
         	{{/if}}
-        	{{age}}
+        	{{age}} .
 
         	<a href="/petition/signers/{{city}}">{{city}}</a>
     </p>

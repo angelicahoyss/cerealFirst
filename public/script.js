@@ -14,7 +14,8 @@ function draw(e) {
     ctx.beginPath();
     ctx.lineWidth = 2;
     ctx.lineCap = "round";
-    ctx.strokeStyle = "black";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "white";
     ctx.moveTo(position.x, position.y);
     setPosition(e);
     ctx.lineTo(position.x, position.y);

@@ -1,8 +1,13 @@
-<h1>thank you for signing!</h1>
+<nav class="navigation">
+    <a class="nav" href="/petition/signers">see all {{num}} signers</a>
+    <a class="nav" href="/petition/logout">logout</a>
+    <a class="nav" href="/profile/edit">edit profile</a>
+</nav>
+<div id="signed">
+<h1 class="title" id="signedtitle">+++thank<br>you<br>for<br>signing+++<br></h1>
 <img src={{image}}>
-<a href="/petition/signers">see all {{num}} signers</a>
-<a href="/profile/edit">edit your profile</a>
 <form method="post" action="/sigdelete">
     <input type="hidden" name="_csrf" value="{{csrfToken}}"></input>
-    <button>unsign</button>
+    <button id ="unsign-btn">delete</button>
 </form>
+</div>

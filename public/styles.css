@@ -1,3 +1,216 @@
+* {
+    box-sizing: border-box;
+}
+
+.registration input {
+    background-color: #0b3fa6;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0px;
+    outline-width: 0;
+    height: 60px;
+    width: 1500px;
+    font-family: Raleway, sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: white;
+    padding-left: 50px;
+    letter-spacing: 0.1em;
+}
+#register {
+    height: 100vh;
+}
+#register h3 {
+    font-family: Raleway Dots, sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#register p {
+    margin-left: 50px;
+    font-family: Raleway, sans-serif;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+}
+#register a {
+    text-decoration: none;
+    color: #f78834;
+}
+
+body {
+    background-color: #0b3fa6;
+    font-family: Raleway, sans-serif;
+    color: #f78834;
+}
+
+.title {
+    font-family: Raleway, sans-serif;
+    color: #f78834;
+    font-size: 100px;
+    margin-left: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+}
+
+#signedtitle {
+    font-family: Raleway Dots, sans-serif;
+    font-weight: 400;
+}
+
+#signup-btn,
+#sign-btn,
+#unsign-btn,
+#edit-btn,
+#profile-btn {
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    color: #f78834;
+    background-color: #0b3fa6;
+    font-family: Raleway, sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+    padding-left: 50px;
+    margin-top: 20px;
+    display: block;
+}
+
+#login {
+    margin-top: 50px;
+}
+#login h1 {
+    margin-left: 50px;
+    font-family: Raleway, sans-serif;
+    color: #f78834;
+    font-size: 100px;
+    margin-left: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+}
+#login input {
+    background-color: #0b3fa6;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0px;
+    outline-width: 0;
+    height: 60px;
+    width: 1500px;
+    font-family: Raleway, sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: white;
+    padding-left: 50px;
+    letter-spacing: 0.1em;
+    display: block;
+}
+
+#login-btn {
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    color: #f78834;
+    background-color: #0b3fa6;
+    font-family: Raleway, sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+    padding-left: 50px;
+    margin-top: 20px;
+}
+#signed {
+    margin-top: 50px;
+}
+
+#signed img {
+    margin: 40px;
+}
+
+#petition h4 {
+    font-family: Raleway Dots, sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    letter-spacing: 0.1em;
+    padding-left: 50px;
+    margin-top: 20px;
+}
+.editprofile {
+    margin-top: 50px;
+}
+.edit input {
+    background-color: #0b3fa6;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0px;
+    outline-width: 0;
+    height: 60px;
+    width: 1500px;
+    font-family: Raleway, sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: white;
+    padding-left: 50px;
+    letter-spacing: 0.1em;
+    display: block;
+}
+
+.userProfile input {
+    background-color: #0b3fa6;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0px;
+    outline-width: 0;
+    height: 60px;
+    width: 1500px;
+    font-family: Raleway, sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: white;
+    padding-left: 50px;
+    letter-spacing: 0.1em;
+    display: block;
+}
+
+.navigation {
+    position: relative;
+    display: block;
+    text-align: right;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+.nav {
+    color: #f78834;
+    font-family: Raleway, sans-serif;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+    text-decoration: none;
+    margin: 20px;
+}
+.signers {
+    margin-left: 50px;
+    margin-top: 70px;
+    letter-spacing: 0.1em;
+    font-family: Raleway, sans-serif;
+    font-size: 40px;
+}
+
+.signers a {
+    text-decoration: none;
+    color: #f78834;
+}
+
 .message {
     visibility: hidden;
     margin: 10px;

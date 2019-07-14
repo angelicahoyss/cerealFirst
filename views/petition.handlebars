@@ -1,7 +1,9 @@
+<nav class="navigation">
+    <a class="nav" href="/petition/logout">logout</a>
+    <a class="nav" href="/profile/edit">edit profile</a>
+</nav>
 <div id="petition">
-        <p>Lorem ipsum dolor izzle amizzle, ma nizzle adipiscing shut the shizzle up.
-        Nullam gangster velizzle, we gonna chung pot, suscipit yo, gizzle vizzle, arcu.</p>
-        <h3>enter your name</h3>
+        <h1 class="title">_<br>your<br>signature<br>below</h1>
         <form method="post" action="/petition">
             <input type="hidden" name="signature" value=""></input>
             <div class = "message {{#if message}} on {{/if}}">
@@ -9,6 +11,6 @@
             </div>
             <input type="hidden" name="_csrf" value="{{csrfToken}}"></input>
             <canvas id="canvas" width="300" height="100" ></canvas>
-            <button id ="sign-btn" type="submit">SIGN</button>
+            <button id ="sign-btn" type="submit">sign</button>
         </form>
 </div>
