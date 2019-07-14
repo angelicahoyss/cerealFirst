@@ -85,6 +85,7 @@ app.post("/register", (req, res) => {
             .addUserInfo(req.body.first, req.body.last, req.body.email, hash)
             .then(results => {
                 req.session.user_id = results.rows[0].id;
+                req.session.user_name = req.body.first;
                 // console.log("req.body:", req.body);
                 // console.log("results", results);
                 res.redirect("/profile");
@@ -96,7 +97,10 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-    res.render("profile", {});
+    res.render("profile", {
+        title: "cereal first",
+        name: req.session.user_name
+    });
 });
 
 app.post("/profile", (req, res) => {
@@ -141,6 +145,7 @@ app.post("/login", (req, res) => {
                     console.log("hash pass:", results.rows[0].password);
                     req.session.user_id = results.rows[0].user_id;
                     req.session.sign_id = results.rows[0].sign_id;
+                    req.session.user_name = results.rows[0].first;
                 }
                 if (req.session.sign_id) {
                     console.log(req.session.sign_id);
@@ -206,7 +211,8 @@ app.get("/petition/signed", (req, res) => {
                     res.render("signed", {
                         title: "cereal first",
                         image: results.rows[0].signature,
-                        num: number[0].count
+                        num: number[0].count,
+                        name: req.session.user_name
                     });
                 });
             })
