@@ -8,13 +8,13 @@
     {{#signers}}
     <p>
         	{{#if url}}
-        		<a href="{{url}}">{{first}} {{last}} . </a>
+        		<a href="{{url}}">{{first}} {{last}} </a>
         	{{else}}
-        		{{first}} {{last}} .
+        		{{first}} {{last}}
         	{{/if}}
-        	{{age}} .
+            {{#if age}} . {{age}} . {{/if}}
 
-        	<a href="/petition/signers/{{city}}">{{city}}</a>
+        {{#if city}}<a href="/petition/signers/{{city}}">{{city}}</a>{{/if}}
     </p>
         {{/signers}}
 </div>
