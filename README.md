@@ -1,4 +1,4 @@
-# Online petition built with Node.js
+# Online Petition Built with Node.js
 
 ## Overview
 
@@ -32,4 +32,3 @@ Node.js | Express.js | PostgreSQL | jQuery | Handlebars
 #### Edit Profile
 
 <img src='./editprofile.gif' />
-
