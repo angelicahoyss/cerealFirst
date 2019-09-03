@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
 }
-
 .registration input {
     background-color: #0b3fa6;
     -webkit-appearance: none;
@@ -44,6 +43,7 @@ body {
     background-color: #0b3fa6;
     font-family: Raleway, sans-serif;
     color: #f78834;
+    margin: 40px;
 }
 
 .title {
@@ -81,6 +81,15 @@ body {
     padding-left: 50px;
     margin-top: 20px;
     display: block;
+}
+
+#signup-btn:hover,
+#sign-btn:hover,
+#unsign-btn:hover,
+#edit-btn:hover,
+#profile-btn:hover {
+    color: #fab785;
+    cursor: crosshair;
 }
 
 #login {
