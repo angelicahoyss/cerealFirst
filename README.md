@@ -17,3 +17,19 @@ Node.js | Express.js | PostgreSQL | jQuery | Handlebars
 
 ## Preview
 
+#### Registration and Login
+
+<img src='./registration.gif' />
+
+#### Additional Information
+
+<img src='./additionalinfo.gif' />
+
+#### Signature with Canvas
+
+<img src='./signature.gif' />
+
+#### Edit Profile
+
+<img src='./editprofile.gif' />
+
