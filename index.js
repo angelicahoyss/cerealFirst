@@ -35,13 +35,13 @@ app.use(function(req, res, next) {
     next();
 });
 
-// app.use((req, res, next) => {
-//     if (!req.session.user_id && req.url != "/register" && req.url != "/login") {
-//         res.redirect("/register");
-//     } else {
-//         next();
-//     }
-// });
+app.use((req, res, next) => {
+    if (!req.session.user_id && req.url != "/register" && req.url != "/login") {
+        res.redirect("/register");
+    } else {
+        next();
+    }
+});
 
 // function requireLoggedOut(req, res, next) {
 //     if (req.session.user_id) {
@@ -135,17 +135,22 @@ app.post("/login", (req, res) => {
         console.log("/login:", results);
         if (!results.rows[0]) {
             return res.render("login", {
-                title: "cereal first"
             });
         }
         return bcrypt
             .checkPassword(req.body.password, results.rows[0].password)
             .then(match => {
+                console.log("match:", match);
                 if (match === true) {
                     console.log("hash pass:", results.rows[0].password);
+                    console.log("results.rows[0].user_id:",results.rows[0].user_id);
+                    console.log("results.rows[0].sign_id:",results.rows[0].sign_id);
                     req.session.user_id = results.rows[0].user_id;
                     req.session.sign_id = results.rows[0].sign_id;
                     req.session.user_name = results.rows[0].first;
+                    console.log("user_id:",req.session.user_id);
+                    console.log("sign_id:",req.session.sign_id);
+                    console.log("user_name:",req.session.user_name);
                 }
                 if (req.session.sign_id) {
                     console.log(req.session.sign_id);

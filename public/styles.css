@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 .registration input {
-    background-color: #0b3fa6;
+    background-color: #3c1882;
     -webkit-appearance: none;
     outline: none;
     border: 0px;
@@ -40,7 +40,7 @@
 }
 
 body {
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     font-family: Raleway, sans-serif;
     color: #f78834;
     margin: 40px;
@@ -73,7 +73,7 @@ body {
     appearance: none;
     border: none;
     color: #f78834;
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     font-family: Raleway, sans-serif;
     font-weight: 800;
     font-size: 30px;
@@ -107,7 +107,7 @@ body {
     font-weight: 800;
 }
 #login input {
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     -webkit-appearance: none;
     outline: none;
     border: 0px;
@@ -130,7 +130,7 @@ body {
     appearance: none;
     border: none;
     color: #f78834;
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     font-family: Raleway, sans-serif;
     font-weight: 800;
     font-size: 30px;
@@ -158,7 +158,7 @@ body {
     margin-top: 50px;
 }
 .edit input {
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     -webkit-appearance: none;
     outline: none;
     border: 0px;
@@ -175,7 +175,7 @@ body {
 }
 
 .userProfile input {
-    background-color: #0b3fa6;
+    background-color:  #3c1882;
     -webkit-appearance: none;
     outline: none;
     border: 0px;
